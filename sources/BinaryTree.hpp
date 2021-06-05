@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <queue>
-using namespace std;
 
 namespace ariel {
     template<typename T>
@@ -20,7 +19,7 @@ namespace ariel {
         class Iterator_pre_order {
         private:
             Node* pNode_pre_order;
-            queue<Node*> stack_pre_order;
+            std::queue<Node*> stack_pre_order;
         public:
             Iterator_pre_order(Node *ptr) : pNode_pre_order(ptr) {
                 if(ptr == nullptr) {
@@ -82,7 +81,7 @@ namespace ariel {
         class Iterator_in_order {
         private:
             Node* pNode_in_order;
-            queue<Node*> stack_in_order;
+            std::queue<Node*> stack_in_order;
         public:
             Iterator_in_order(Node *ptr) : pNode_in_order(ptr) {
                 if(ptr == nullptr) {
@@ -144,7 +143,7 @@ namespace ariel {
         class Iterator_post_order {
         private:
             Node* pNode_post_order;
-            queue<Node*> stack_post_order;
+            std::queue<Node*> stack_post_order;
         public:
             Iterator_post_order(Node *ptr) : pNode_post_order(ptr) {
                 if(ptr == nullptr){
@@ -223,7 +222,7 @@ namespace ariel {
             addNodes(otherBT.root, this->root);
         }
         
-        BinaryTree& operator=(const BinaryTree otherBT) {
+        BinaryTree& operator=(const BinaryTree& otherBT) {
             if (this == &otherBT) {
                 return *this;
             }
@@ -260,7 +259,7 @@ namespace ariel {
         BinaryTree& add_left(const T& value, const T& leftValue) {
             Node* node = findNodeByValue(value, root);
             if (node == nullptr) {
-                throw invalid_argument("Cannot insert to unexisting node in the tree");
+                throw std::invalid_argument("Cannot insert to unexisting node in the tree");
             }
             if (node->leftNode == nullptr) {
                 Node* left_node = new Node(leftValue);
@@ -277,7 +276,7 @@ namespace ariel {
         BinaryTree& add_right(const T& value, const T& rightValue) {
             Node* node = findNodeByValue(value, root);
             if (node == nullptr) {
-                throw invalid_argument("Cannot insert to unexisting node in the tree");
+                throw std::invalid_argument("Cannot insert to unexisting node in the tree");
             }
             if (node->rightNode == nullptr) {
                 Node* right_node = new Node(rightValue);
@@ -354,7 +353,7 @@ namespace ariel {
         }
 
         friend std::ostream& operator<<(std::ostream& os, const BinaryTree<T>& bt) {
-            cout << "Printing tree" << endl;
+            std::cout << "Printing tree" << std::endl;
             return os;
         }
     };
